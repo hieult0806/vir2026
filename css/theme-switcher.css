@@ -1,0 +1,335 @@
+/**
+ * Theme Switcher Component Styles
+ */
+
+/* Theme Switcher Button */
+.theme-switcher-btn {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 2000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(26, 22, 18, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.theme-switcher-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: rgba(184, 149, 106, 0.2);
+    border-color: var(--color-gold);
+    box-shadow: 0 6px 20px rgba(184, 149, 106, 0.3);
+}
+
+.theme-switcher-btn:active {
+    transform: scale(0.95);
+}
+
+/* Theme Panel */
+.theme-panel {
+    position: fixed;
+    top: 5rem;
+    left: 2rem;
+    z-index: 1999;
+    width: 320px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: rgba(26, 22, 18, 0.98);
+    backdrop-filter: blur(30px);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Panel Header */
+.theme-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.theme-panel-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--color-gold-light);
+    margin: 0;
+}
+
+.theme-panel-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.theme-panel-close:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--color-gold);
+}
+
+/* Theme Grid */
+.theme-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+/* Theme Card */
+.theme-card {
+    background: rgba(255,255,255,0.03);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.3);
+    transform: translateX(4px);
+}
+
+.theme-card:hover::before {
+    opacity: 1;
+}
+
+.theme-card.active {
+    background: rgba(184, 149, 106, 0.15);
+    border-color: var(--color-gold);
+    box-shadow: 0 4px 16px rgba(184, 149, 106, 0.2);
+}
+
+.theme-card.active::after {
+    content: '✓';
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 24px;
+    height: 24px;
+    background: var(--color-gold);
+    color: var(--color-ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+/* Theme Card Content */
+.theme-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.theme-emoji {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.theme-name {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    margin: 0;
+}
+
+.theme-description {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Theme Preview Swatches */
+.theme-swatches {
+    display: flex;
+    gap: 4px;
+    margin-top: 0.75rem;
+}
+
+.theme-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Quick Actions */
+.theme-quick-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.theme-action-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-action-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+/* Scrollbar Styling */
+.theme-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.theme-panel::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+}
+
+.theme-panel::-webkit-scrollbar-thumb {
+    background: rgba(184, 149, 106, 0.5);
+    border-radius: 3px;
+}
+
+.theme-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+    .theme-switcher-btn {
+        top: 1rem;
+        left: 1rem;
+        width: 44px;
+        height: 44px;
+    }
+
+    .theme-panel {
+        top: 4rem;
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 600px) {
+    .theme-panel {
+        left: 0.5rem;
+        right: 0.5rem;
+        width: auto;
+        max-width: none;
+    }
+}
+
+/* Animation for theme transition */
+body {
+    transition: background 0.5s ease;
+}
+
+:root {
+    transition:
+        --color-cream 0.3s ease,
+        --color-paper 0.3s ease,
+        --color-gold 0.3s ease;
+}
+
+/* Toast notification for theme change */
+.theme-toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3000;
+    background: rgba(26, 22, 18, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--color-gold);
+    box-shadow: 0 4px 20px rgba(184, 149, 106, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.theme-toast-emoji {
+    font-size: 1.5rem;
+}
+
+.theme-toast-text {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.9);
+}
+
+.theme-toast-name {
+    color: var(--color-gold-light);
+    font-weight: 600;
+}

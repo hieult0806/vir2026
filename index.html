@@ -19,337 +19,270 @@
     <link rel="stylesheet" href="css/theme-switcher.css">
 </head>
 <body>
-    <!-- Help Hints -->
-    <div class="help-hint">
-        <span>Đổi màu <kbd>T</kbd></span>
-        <span>Kéo hoặc nhấp để lật trang <kbd>Drag / Click</kbd></span>
-        <span>Ctrl + cuộn để zoom <kbd>Ctrl + Scroll</kbd></span>
-        <span>Phím mũi tên <kbd>← →</kbd></span>
-    </div>
-
-    <!-- Book Container -->
-    <div class="book-wrapper">
-        <div class="book-container" id="bookContainer">
-            <div class="book" id="book">
-
-                <!-- Left Static Page (shows current left page) -->
-                <section class="static-page" id="staticLeft" aria-label="Left page">
-                    <div class="page-content cover-dark">
-                        <div class="cover-circles">
-                            <div class="cover-circle"></div>
-                            <div class="cover-circle"></div>
-                            <div class="cover-circle"></div>
-                        </div>
-                        <div class="cover-content">
-                            <div class="cover-tag">Đồ án tốt nghiệp</div>
-                            <h1><em>Quan Họ</em><br>Bắc Ninh</h1>
-                            <p class="cover-subtitle">Điêu khắc biểu tượng</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Right Static Page (back cover - shows after all pages flipped) -->
-                <section class="static-page-right" id="staticRight" style="visibility: hidden;" aria-label="Back cover">
-                    <div class="page-content cover-dark colophon">
-                        <h3>Điêu Khắc Biểu Tượng<br>Quan Họ Bắc Ninh</h3>
-                        <p>Tác phẩm điêu khắc công cộng dành cho Nhà hát Dân ca Quan họ Bắc Ninh.</p>
-                        <div class="colophon-details">
-                            <div class="colophon-item"><label>Đề tài</label><span>Đồ Án Tốt Nghiệp</span></div>
-                            <div class="colophon-item"><label>Năm</label><span>2025</span></div>
-                        </div>
-                        <p class="copyright-text">© 2025 — Điêu Khắc</p>
-                    </div>
-                </section>
-
-                <!-- Book Spine -->
-                <div class="book-spine" aria-hidden="true"></div>
-
-                <!-- Flippable Pages (stacked, flip right to left) -->
-
-                <!-- Page 7 (bottom of stack) - Conclusion -->
-                <article class="flip-page" data-page="7" style="z-index: 1;">
-                    <div class="page-front cover-dark">
-                        <div class="page-content">
-                            <div class="chapter-number">IV</div>
-                            <div class="chapter-label">Kết luận</div>
-                            <h2 class="page-title">Kết Luận</h2>
-                            <div class="content">
-                                <p class="lead">Đồ án là bước đầu để định hướng sự quan tâm lâu dài tới điêu khắc công cộng gắn với văn hóa Việt Nam.</p>
-                                <p>Trong đó mỗi tác phẩm không chỉ giải quyết vấn đề hình thức mà còn tham gia vào hệ thống không gian văn hóa — xã hội cụ thể, từ di sản, qua kiến trúc nhà hát, tới trải nghiệm của người xem.</p>
-                            </div>
-                            <div class="page-number">13</div>
-                        </div>
-                    </div>
-                    <div class="page-back cover-dark colophon">
-                        <div class="page-content">
-                            <h3>Điêu Khắc Biểu Tượng<br>Quan Họ Bắc Ninh</h3>
-                            <p>Tác phẩm điêu khắc công cộng mang tính biểu tượng dành cho Nhà hát Dân ca Quan họ Bắc Ninh — nơi giao thoa giữa truyền thống và đương đại.</p>
-                            <div class="colophon-details">
-                                <div class="colophon-item"><label>Đề tài</label><span>Đồ Án Tốt Nghiệp</span></div>
-                                <div class="colophon-item"><label>Chuyên ngành</label><span>Điêu Khắc</span></div>
-                                <div class="colophon-item"><label>Năm</label><span>2025</span></div>
-                                <div class="colophon-item"><label>Di sản</label><span>UNESCO 2009</span></div>
-                            </div>
-                            <p class="copyright-text">© 2025 — Đồ Án Tốt Nghiệp Điêu Khắc</p>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Page 6 - Artwork 2 Images -->
-                <article class="flip-page" data-page="6" style="z-index: 2;">
-                    <div class="page-front">
-                        <div class="page-content">
-                            <div class="image-placeholder" style="height: 55%; margin-bottom: 0.8rem;">
-                                <div class="placeholder-icon">
-                                    <svg viewBox="0 0 80 80">
-                                        <ellipse cx="40" cy="20" rx="18" ry="7" transform="rotate(-5 40 20)"/>
-                                        <ellipse cx="40" cy="35" rx="16" ry="6" transform="rotate(5 40 35)"/>
-                                        <ellipse cx="40" cy="48" rx="14" ry="5" transform="rotate(-3 40 48)"/>
-                                        <ellipse cx="40" cy="60" rx="12" ry="4"/>
-                                    </svg>
-                                </div>
-                                <div class="placeholder-label">Ảnh chính</div>
-                                <div class="placeholder-title">Phương án Vươn Cao</div>
-                            </div>
-                            <div class="thumb-grid">
-                                <div class="image-placeholder"><div class="placeholder-label">Góc 2</div></div>
-                                <div class="image-placeholder"><div class="placeholder-label">Chi tiết</div></div>
-                                <div class="image-placeholder"><div class="placeholder-label">Bối cảnh</div></div>
-                            </div>
-                            <div class="page-number">11</div>
-                        </div>
-                    </div>
-                    <div class="page-back">
-                        <div class="page-content">
-                            <div class="artwork-header">
-                                <div class="artwork-number">02</div>
-                                <div class="artwork-tag gold">Trong Nhà</div>
-                            </div>
-                            <h3 class="artwork-title">Phương án Vươn Cao</h3>
-                            <p class="artwork-subtitle">Tác phẩm điêu khắc trong nhà</p>
-                            <p class="artwork-description">Tổ chức mảng tròn và vòng cong theo trục đứng, tạo thành khối vươn cao với cảm giác xoắn spiral.</p>
-                            <div class="artwork-details">
-                                <div class="detail-item"><label>Vật liệu</label><span>Thép mạ / Sơn màu</span></div>
-                                <div class="detail-item"><label>Vị trí</label><span>Sảnh / Triển lãm</span></div>
-                                <div class="detail-item"><label>Phong cách</label><span>Trục đứng / Spiral</span></div>
-                                <div class="detail-item"><label>Tham khảo</label><span>Alexander Calder</span></div>
-                            </div>
-                            <div class="artwork-features">
-                                <h4>Đặc điểm</h4>
-                                <ul>
-                                    <li>Mốc nhận diện từ xa (landmark)</li>
-                                    <li>Mang tính trang trọng</li>
-                                    <li>Hiệu quả thị giác mạnh</li>
-                                </ul>
-                            </div>
-                            <div class="page-number">12</div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Page 5 - Artwork 1 -->
-                <article class="flip-page" data-page="5" style="z-index: 3;">
-                    <div class="page-front">
-                        <div class="page-content">
-                            <div class="artwork-header">
-                                <div class="artwork-number">01</div>
-                                <div class="artwork-tag">Ngoài Trời</div>
-                            </div>
-                            <h3 class="artwork-title">Phương án Trải Ngang</h3>
-                            <p class="artwork-subtitle">Tác phẩm điêu khắc ngoài trời</p>
-                            <p class="artwork-description">Tổ chức tác phẩm theo trục ngang, gần với mặt đất. Mảng tròn nghiêng xếp chồng gợi hình nón trong trạng thái di chuyển.</p>
-                            <div class="artwork-details">
-                                <div class="detail-item"><label>Vật liệu</label><span>Thép sơn tĩnh điện</span></div>
-                                <div class="detail-item"><label>Vị trí</label><span>Sân vườn / Quảng trường</span></div>
-                                <div class="detail-item"><label>Phong cách</label><span>Cấu trúc mở</span></div>
-                                <div class="detail-item"><label>Tham khảo</label><span>Sol LeWitt</span></div>
-                            </div>
-                            <div class="artwork-features">
-                                <h4>Đặc điểm</h4>
-                                <ul>
-                                    <li>Cấu trúc trải dài, dễ tiếp cận</li>
-                                    <li>Tương tác trực tiếp với người xem</li>
-                                    <li>Gợi hình ảnh "đoàn người đi hội"</li>
-                                </ul>
-                            </div>
-                            <div class="page-number">09</div>
-                        </div>
-                    </div>
-                    <div class="page-back">
-                        <div class="page-content">
-                            <div class="image-placeholder" style="height: 55%; margin-bottom: 0.8rem;">
-                                <div class="placeholder-icon">
-                                    <svg viewBox="0 0 80 80">
-                                        <ellipse cx="20" cy="40" rx="15" ry="8" transform="rotate(-15 20 40)"/>
-                                        <ellipse cx="40" cy="35" rx="15" ry="8" transform="rotate(-10 40 35)"/>
-                                        <ellipse cx="60" cy="40" rx="15" ry="8" transform="rotate(-5 60 40)"/>
-                                        <path d="M15 48 Q40 55 65 48" stroke-dasharray="3 3"/>
-                                    </svg>
-                                </div>
-                                <div class="placeholder-label">Ảnh chính</div>
-                                <div class="placeholder-title">Phương án Trải Ngang</div>
-                            </div>
-                            <div class="thumb-grid">
-                                <div class="image-placeholder"><div class="placeholder-label">Góc 2</div></div>
-                                <div class="image-placeholder"><div class="placeholder-label">Chi tiết</div></div>
-                                <div class="image-placeholder"><div class="placeholder-label">Bối cảnh</div></div>
-                            </div>
-                            <div class="page-number">10</div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Page 4 - Materials & Design Language -->
-                <article class="flip-page" data-page="4" style="z-index: 4;">
-                    <div class="page-front">
-                        <div class="page-content">
-                            <div class="content">
-                                <h3>Ngôn ngữ tạo hình</h3>
-                                <ul>
-                                    <li><strong>Mảng tròn nghiêng</strong> — Gợi hình nón ba tầm, yếu tố nhận diện trực tiếp</li>
-                                    <li><strong>Vòng cong liên kết</strong> — Gợi chuyển động và sự gắn kết cộng đồng</li>
-                                    <li><strong>Nhịp lặp</strong> — Gợi đoàn người, dòng di chuyển</li>
-                                </ul>
-                                <div class="pull-quote">
-                                    <p>Nón ba tầm không chỉ là chi tiết trang phục, mà được xem như một mô-đun hình học.</p>
-                                </div>
-                            </div>
-                            <div class="page-number">07</div>
-                        </div>
-                    </div>
-                    <div class="page-back">
-                        <div class="page-content">
-                            <div class="content">
-                                <h3>Lựa chọn vật liệu: Thép</h3>
-                                <p>Thép được chọn làm vật liệu chính cho tác phẩm:</p>
-                                <ul>
-                                    <li><strong>Đáp ứng kết cấu ngoài trời</strong> — Cường độ chịu lực cao, ổn định, an toàn</li>
-                                    <li><strong>Khả năng tạo hình</strong> — Cắt laser/plasma chính xác, uốn cong theo bán kính</li>
-                                    <li><strong>Tính thẩm mỹ</strong> — Phù hợp với nhà hát đương đại</li>
-                                    <li><strong>Mở rộng quy mô</strong> — Từ mô hình nhỏ lên kích thước lớn</li>
-                                </ul>
-                            </div>
-                            <div class="page-number">08</div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Page 3 - Theater Image & Chapter 2 -->
-                <article class="flip-page" data-page="3" style="z-index: 5;">
-                    <div class="page-front full-image">
-                        <div class="page-content">
-                            <div class="image-placeholder">
-                                <div class="placeholder-icon">
-                                    <svg viewBox="0 0 80 80">
-                                        <path d="M10 60 Q40 20 70 60"/>
-                                        <circle cx="25" cy="50" r="8"/>
-                                        <circle cx="55" cy="50" r="8"/>
-                                    </svg>
-                                </div>
-                                <div class="placeholder-label">Hình ảnh</div>
-                                <div class="placeholder-title">Nhà hát Dân ca Quan họ</div>
-                                <div class="placeholder-size">650 × 850 px</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-back">
-                        <div class="page-content">
-                            <div class="chapter-number">II</div>
-                            <div class="chapter-label">Phần hai</div>
-                            <h2 class="page-title">Quá Trình<br><em>Thực Hiện</em></h2>
-                            <div class="content">
-                                <p class="lead">Ý tưởng tác phẩm xuất phát từ quan sát về lễ hội Lim — không gian diễn xướng Quan họ tiêu biểu.</p>
-                                <ul>
-                                    <li>Dòng người đi trẩy hội trên triền đồi</li>
-                                    <li>Hình ảnh nón ba tầm, nón quai thao</li>
-                                    <li>Không gian hội đông người nhưng có trật tự</li>
-                                </ul>
-                            </div>
-                            <div class="page-number">06</div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Page 2 - UNESCO Quote & Theater Info -->
-                <article class="flip-page" data-page="2" style="z-index: 6;">
-                    <div class="page-front">
-                        <div class="page-content">
-                            <div class="pull-quote" style="margin-top: 25%; border: none;">
-                                <p>Dân ca Quan họ Bắc Ninh đã được UNESCO ghi danh là Di sản Văn hóa Phi vật thể đại diện của Nhân loại năm 2009.</p>
-                                <cite>— UNESCO</cite>
-                            </div>
-                            <div class="page-number">03</div>
-                        </div>
-                    </div>
-                    <div class="page-back">
-                        <div class="page-content">
-                            <div class="content">
-                                <h3>Nhà hát Dân ca Quan họ Bắc Ninh</h3>
-                                <p>Công trình được hoàn thành giai đoạn 2019–2020, đạt Giải Bạc — Giải thưởng Kiến trúc Quốc gia 2022–2023.</p>
-                                <p>Tọa lạc tại khu Viêm Xá, phường Hòa Long — một trong các làng Quan họ gốc.</p>
-                                <ul>
-                                    <li>Thiết chế văn hóa chuyên biệt cho hoạt động bảo tồn và trình diễn</li>
-                                    <li>Kiến trúc kết hợp hình khối hiện đại với gợi nhắc truyền thống</li>
-                                    <li>Điểm nhấn trong chiến lược phát triển không gian văn hóa</li>
-                                </ul>
-                            </div>
-                            <div class="page-number">04</div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Page 1 (top of stack) - Title Page -->
-                <article class="flip-page" data-page="1" style="z-index: 7;">
-                    <div class="page-front cover-dark">
-                        <div class="page-content">
-                            <div class="cover-content" style="justify-content: center; align-items: center; text-align: center;">
-                                <p class="cover-subtitle" style="max-width: 85%;">Tác phẩm điêu khắc công cộng mang tính biểu tượng dành cho Nhà hát Dân ca Quan họ Bắc Ninh</p>
-                                <div style="margin-top: 2.5rem;">
-                                    <div class="cover-tag" style="justify-content: center;">2025</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-back">
-                        <div class="page-content">
-                            <div class="chapter-number">I</div>
-                            <div class="chapter-label">Phần một</div>
-                            <h2 class="page-title">Lời Giới Thiệu<br><em>Tổng Quan</em></h2>
-                            <div class="content">
-                                <p class="lead">Thành phố Bắc Ninh là trung tâm chính trị, kinh tế, văn hóa của tỉnh Bắc Ninh.</p>
-                                <p>Bắc Ninh có bề dày lịch sử và văn hóa lâu đời, gắn với vùng Kinh Bắc cổ. Quá trình công nghiệp hóa diễn ra mạnh mẽ cùng hệ thống di tích lịch sử vẫn được bảo tồn.</p>
-                            </div>
-                            <div class="page-number">02</div>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Control Panel -->
-    <nav class="controls" aria-label="Book navigation controls">
-        <button class="nav-btn" id="prevBtn" disabled aria-label="Previous page">
-            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <div class="page-indicator" id="pageIndicator" role="status" aria-live="polite">Trang 1 / 14</div>
-        <button class="nav-btn" id="nextBtn" aria-label="Next page">
-            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-        <div class="zoom-controls">
-            <button class="zoom-btn" id="zoomOut" aria-label="Zoom out">−</button>
-            <div class="zoom-level" id="zoomLevel" role="status">100%</div>
-            <button class="zoom-btn" id="zoomIn" aria-label="Zoom in">+</button>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Quan Họ</div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="nav-link">Trang chủ</a></li>
+                <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+                <li><a href="#heritage" class="nav-link">Di sản</a></li>
+                <li><a href="#process" class="nav-link">Quá trình</a></li>
+                <li><a href="#artworks" class="nav-link">Tác phẩm</a></li>
+                <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-circles">
+            <div class="hero-circle"></div>
+            <div class="hero-circle"></div>
+            <div class="hero-circle"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-tag">Đồ án tốt nghiệp</div>
+            <h1 class="hero-title"><em>Quan Họ</em><br>Bắc Ninh</h1>
+            <p class="hero-subtitle">Điêu khắc biểu tượng</p>
+            <p class="hero-description">Tác phẩm điêu khắc công cộng mang tính biểu tượng dành cho Nhà hát Dân ca Quan họ Bắc Ninh</p>
+            <a href="#about" class="hero-cta">Khám phá</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Cuộn xuống</span>
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-light" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">I</span>
+                <span class="section-label">Phần một</span>
+            </div>
+            <h2 class="section-title">Lời Giới Thiệu<br><em>Tổng Quan</em></h2>
+            <div class="content">
+                <p class="lead">Thành phố Bắc Ninh là trung tâm chính trị, kinh tế, văn hóa của tỉnh Bắc Ninh.</p>
+                <p>Bắc Ninh có bề dày lịch sử và văn hóa lâu đời, gắn với vùng Kinh Bắc cổ. Quá trình công nghiệp hóa diễn ra mạnh mẽ cùng hệ thống di tích lịch sử vẫn được bảo tồn.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Section -->
+    <section class="section section-dark" id="heritage">
+        <div class="container">
+            <div class="quote-block">
+                <p>Dân ca Quan họ Bắc Ninh đã được UNESCO ghi danh là Di sản Văn hóa Phi vật thể đại diện của Nhân loại năm 2009.</p>
+                <cite>— UNESCO</cite>
+            </div>
+            <div class="content">
+                <h3>Nhà hát Dân ca Quan họ Bắc Ninh</h3>
+                <p>Công trình được hoàn thành giai đoạn 2019–2020, đạt Giải Bạc — Giải thưởng Kiến trúc Quốc gia 2022–2023.</p>
+                <p>Tọa lạc tại khu Viêm Xá, phường Hòa Long — một trong các làng Quan họ gốc.</p>
+                <ul>
+                    <li>Thiết chế văn hóa chuyên biệt cho hoạt động bảo tồn và trình diễn</li>
+                    <li>Kiến trúc kết hợp hình khối hiện đại với gợi nhắc truyền thống</li>
+                    <li>Điểm nhấn trong chiến lược phát triển không gian văn hóa</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Theater Image Section -->
+    <section class="section section-image" id="theater">
+        <div class="image-placeholder">
+            <div class="placeholder-icon">
+                <svg viewBox="0 0 80 80">
+                    <path d="M10 60 Q40 20 70 60"/>
+                    <circle cx="25" cy="50" r="8"/>
+                    <circle cx="55" cy="50" r="8"/>
+                </svg>
+            </div>
+            <div class="placeholder-label">Hình ảnh</div>
+            <div class="placeholder-title">Nhà hát Dân ca Quan họ</div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section section-light" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">II</span>
+                <span class="section-label">Phần hai</span>
+            </div>
+            <h2 class="section-title">Quá Trình<br><em>Thực Hiện</em></h2>
+            <div class="content">
+                <p class="lead">Ý tưởng tác phẩm xuất phát từ quan sát về lễ hội Lim — không gian diễn xướng Quan họ tiêu biểu.</p>
+                <ul>
+                    <li>Dòng người đi trẩy hội trên triền đồi</li>
+                    <li>Hình ảnh nón ba tầm, nón quai thao</li>
+                    <li>Không gian hội đông người nhưng có trật tự</li>
+                </ul>
+            </div>
+            <div class="two-column">
+                <div class="column">
+                    <h3>Ngôn ngữ tạo hình</h3>
+                    <ul>
+                        <li><strong>Mảng tròn nghiêng</strong> — Gợi hình nón ba tầm, yếu tố nhận diện trực tiếp</li>
+                        <li><strong>Vòng cong liên kết</strong> — Gợi chuyển động và sự gắn kết cộng đồng</li>
+                        <li><strong>Nhịp lặp</strong> — Gợi đoàn người, dòng di chuyển</li>
+                    </ul>
+                    <div class="pull-quote">
+                        <p>Nón ba tầm không chỉ là chi tiết trang phục, mà được xem như một mô-đun hình học.</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <h3>Lựa chọn vật liệu: Thép</h3>
+                    <p>Thép được chọn làm vật liệu chính cho tác phẩm:</p>
+                    <ul>
+                        <li><strong>Đáp ứng kết cấu ngoài trời</strong> — Cường độ chịu lực cao, ổn định, an toàn</li>
+                        <li><strong>Khả năng tạo hình</strong> — Cắt laser/plasma chính xác, uốn cong theo bán kính</li>
+                        <li><strong>Tính thẩm mỹ</strong> — Phù hợp với nhà hát đương đại</li>
+                        <li><strong>Mở rộng quy mô</strong> — Từ mô hình nhỏ lên kích thước lớn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artworks Section -->
+    <section class="section section-dark" id="artworks">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">III</span>
+                <span class="section-label">Phần ba</span>
+            </div>
+            <h2 class="section-title">Các Tác Phẩm</h2>
+
+            <!-- Artwork 1 -->
+            <div class="artwork">
+                <div class="artwork-content">
+                    <div class="artwork-header">
+                        <div class="artwork-number">01</div>
+                        <div class="artwork-tag">Ngoài Trời</div>
+                    </div>
+                    <h3 class="artwork-title">Phương án Trải Ngang</h3>
+                    <p class="artwork-subtitle">Tác phẩm điêu khắc ngoài trời</p>
+                    <p class="artwork-description">Tổ chức tác phẩm theo trục ngang, gần với mặt đất. Mảng tròn nghiêng xếp chồng gợi hình nón trong trạng thái di chuyển.</p>
+                    <div class="artwork-details">
+                        <div class="detail-item"><label>Vật liệu</label><span>Thép sơn tĩnh điện</span></div>
+                        <div class="detail-item"><label>Vị trí</label><span>Sân vườn / Quảng trường</span></div>
+                        <div class="detail-item"><label>Phong cách</label><span>Cấu trúc mở</span></div>
+                        <div class="detail-item"><label>Tham khảo</label><span>Sol LeWitt</span></div>
+                    </div>
+                    <div class="artwork-features">
+                        <h4>Đặc điểm</h4>
+                        <ul>
+                            <li>Cấu trúc trải dài, dễ tiếp cận</li>
+                            <li>Tương tác trực tiếp với người xem</li>
+                            <li>Gợi hình ảnh "đoàn người đi hội"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="artwork-images">
+                    <div class="image-placeholder main-image">
+                        <div class="placeholder-icon">
+                            <svg viewBox="0 0 80 80">
+                                <ellipse cx="20" cy="40" rx="15" ry="8" transform="rotate(-15 20 40)"/>
+                                <ellipse cx="40" cy="35" rx="15" ry="8" transform="rotate(-10 40 35)"/>
+                                <ellipse cx="60" cy="40" rx="15" ry="8" transform="rotate(-5 60 40)"/>
+                                <path d="M15 48 Q40 55 65 48" stroke-dasharray="3 3"/>
+                            </svg>
+                        </div>
+                        <div class="placeholder-label">Ảnh chính</div>
+                        <div class="placeholder-title">Phương án Trải Ngang</div>
+                    </div>
+                    <div class="thumb-grid">
+                        <div class="image-placeholder"><div class="placeholder-label">Góc 2</div></div>
+                        <div class="image-placeholder"><div class="placeholder-label">Chi tiết</div></div>
+                        <div class="image-placeholder"><div class="placeholder-label">Bối cảnh</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artwork 2 -->
+            <div class="artwork artwork-reverse">
+                <div class="artwork-images">
+                    <div class="image-placeholder main-image">
+                        <div class="placeholder-icon">
+                            <svg viewBox="0 0 80 80">
+                                <ellipse cx="40" cy="20" rx="18" ry="7" transform="rotate(-5 40 20)"/>
+                                <ellipse cx="40" cy="35" rx="16" ry="6" transform="rotate(5 40 35)"/>
+                                <ellipse cx="40" cy="48" rx="14" ry="5" transform="rotate(-3 40 48)"/>
+                                <ellipse cx="40" cy="60" rx="12" ry="4"/>
+                            </svg>
+                        </div>
+                        <div class="placeholder-label">Ảnh chính</div>
+                        <div class="placeholder-title">Phương án Vươn Cao</div>
+                    </div>
+                    <div class="thumb-grid">
+                        <div class="image-placeholder"><div class="placeholder-label">Góc 2</div></div>
+                        <div class="image-placeholder"><div class="placeholder-label">Chi tiết</div></div>
+                        <div class="image-placeholder"><div class="placeholder-label">Bối cảnh</div></div>
+                    </div>
+                </div>
+                <div class="artwork-content">
+                    <div class="artwork-header">
+                        <div class="artwork-number">02</div>
+                        <div class="artwork-tag gold">Trong Nhà</div>
+                    </div>
+                    <h3 class="artwork-title">Phương án Vươn Cao</h3>
+                    <p class="artwork-subtitle">Tác phẩm điêu khắc trong nhà</p>
+                    <p class="artwork-description">Tổ chức mảng tròn và vòng cong theo trục đứng, tạo thành khối vươn cao với cảm giác xoắn spiral.</p>
+                    <div class="artwork-details">
+                        <div class="detail-item"><label>Vật liệu</label><span>Thép mạ / Sơn màu</span></div>
+                        <div class="detail-item"><label>Vị trí</label><span>Sảnh / Triển lãm</span></div>
+                        <div class="detail-item"><label>Phong cách</label><span>Trục đứng / Spiral</span></div>
+                        <div class="detail-item"><label>Tham khảo</label><span>Alexander Calder</span></div>
+                    </div>
+                    <div class="artwork-features">
+                        <h4>Đặc điểm</h4>
+                        <ul>
+                            <li>Mốc nhận diện từ xa (landmark)</li>
+                            <li>Mang tính trang trọng</li>
+                            <li>Hiệu quả thị giác mạnh</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="section section-light" id="conclusion">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">IV</span>
+                <span class="section-label">Kết luận</span>
+            </div>
+            <h2 class="section-title">Kết Luận</h2>
+            <div class="content">
+                <p class="lead">Đồ án là bước đầu để định hướng sự quan tâm lâu dài tới điêu khắc công cộng gắn với văn hóa Việt Nam.</p>
+                <p>Trong đó mỗi tác phẩm không chỉ giải quyết vấn đề hình thức mà còn tham gia vào hệ thống không gian văn hóa — xã hội cụ thể, từ di sản, qua kiến trúc nhà hát, tới trải nghiệm của người xem.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact Section -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <h3>Điêu Khắc Biểu Tượng<br>Quan Họ Bắc Ninh</h3>
+            <p>Tác phẩm điêu khắc công cộng mang tính biểu tượng dành cho Nhà hát Dân ca Quan họ Bắc Ninh — nơi giao thoa giữa truyền thống và đương đại.</p>
+            <div class="footer-details">
+                <div class="footer-item"><label>Đề tài</label><span>Đồ Án Tốt Nghiệp</span></div>
+                <div class="footer-item"><label>Chuyên ngành</label><span>Điêu Khắc</span></div>
+                <div class="footer-item"><label>Năm</label><span>2025</span></div>
+                <div class="footer-item"><label>Di sản</label><span>UNESCO 2009</span></div>
+            </div>
+            <p class="copyright">© 2025 — Đồ Án Tốt Nghiệp Điêu Khắc</p>
+        </div>
+    </footer>
+
     <!-- JavaScript -->
-    <script src="js/config.js"></script>
-    <script src="js/state.js"></script>
-    <script src="js/themes.js"></script>
     <script src="js/book.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/theme-switcher.js"></script>
 </body>
 </html>

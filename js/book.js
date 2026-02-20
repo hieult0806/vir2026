@@ -1,186 +1,101 @@
 /**
- * Book Module
- * Handles the core book flipping logic and zoom functionality
+ * Landing Page Navigation
+ * Handles smooth scrolling, navbar behavior, and theme toggle
  */
 
-const Book = {
-    // DOM element references
-    elements: {
-        book: null,
-        bookContainer: null,
-        flipPages: null,
-        staticLeft: null,
-        staticRight: null,
-        prevBtn: null,
-        nextBtn: null,
-        pageIndicator: null,
-        zoomInBtn: null,
-        zoomOutBtn: null,
-        zoomLevelEl: null
-    },
+document.addEventListener('DOMContentLoaded', () => {
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    // Page content data (loaded from JSON)
-    pageData: null,
-
-    /**
-     * Initialize the book module
-     * @param {Object} elements - DOM element references
-     */
-    init(elements) {
-        this.elements = elements;
-        this.loadPageData();
-    },
-
-    /**
-     * Load page content data from JSON
-     */
-    async loadPageData() {
-        try {
-            const response = await fetch('data/pages.json');
-            const data = await response.json();
-            this.pageData = data.pages;
-            this.updateDisplay();
-        } catch (error) {
-            console.error('Failed to load page data:', error);
-            // Fallback to empty content if JSON fails to load
-            this.pageData = [];
-        }
-    },
-
-    /**
-     * Update the display based on current state
-     * Updates page indicator, buttons, left page content, and right page visibility
-     */
-    updateDisplay() {
-        const currentPage = BookState.getCurrentPage();
-
-        // Update page indicator (display as 1-indexed spread)
-        const displayPage = currentPage * 2 + 1;
-        this.elements.pageIndicator.textContent = `Trang ${displayPage}-${displayPage + 1} / ${CONFIG.TOTAL_PAGES}`;
-
-        // Update navigation buttons
-        this.elements.prevBtn.disabled = BookState.isFirstPage();
-        this.elements.nextBtn.disabled = BookState.isLastPage();
-
-        // Update left static page content from data
-        if (this.pageData && currentPage < this.pageData.length) {
-            const pageContent = this.pageData[currentPage].leftContent;
-            this.elements.staticLeft.innerHTML = `<div class="${pageContent.class}">${pageContent.html}</div>`;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
 
-        // Show/hide right static page (back cover)
-        this.elements.staticRight.style.visibility = BookState.isLastPage() ? 'visible' : 'hidden';
-    },
+        // Update active nav link based on scroll position
+        updateActiveNavLink();
+    });
 
-    /**
-     * Flip to the next page
-     * Applies animation and updates state
-     */
-    flipNext() {
-        if (BookState.isLastPage() || BookState.isCurrentlyAnimating()) {
-            return;
-        }
+    // Smooth scroll for navigation links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
 
-        BookState.setAnimating(true);
-        const currentPage = BookState.getCurrentPage();
-        const pageToFlip = this.elements.flipPages[CONFIG.TOTAL_FLIP_PAGES - 1 - currentPage];
+            if (targetSection) {
+                const navbarHeight = navbar.offsetHeight;
+                const targetPosition = targetSection.offsetTop - navbarHeight;
 
-        // Add flipping animation class
-        pageToFlip.classList.add(CONFIG.CLASSES.FLIPPING);
-        pageToFlip.classList.add(CONFIG.CLASSES.FLIPPED);
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 
-        // Update z-index for proper stacking order
-        pageToFlip.style.zIndex = CONFIG.Z_INDEX_BASE + currentPage;
+    // Update active navigation link based on scroll position
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const navbarHeight = navbar.offsetHeight;
+        const scrollPosition = window.scrollY + navbarHeight + 100;
 
-        // Advance state
-        BookState.nextPage();
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            const correspondingLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
 
-        // Remove animation class and update display after animation completes
-        setTimeout(() => {
-            pageToFlip.classList.remove(CONFIG.CLASSES.FLIPPING);
-            this.updateDisplay();
-            BookState.setAnimating(false);
-        }, CONFIG.ANIMATION_DURATION);
-    },
-
-    /**
-     * Flip to the previous page
-     * Reverses animation and updates state
-     */
-    flipPrev() {
-        if (BookState.isFirstPage() || BookState.isCurrentlyAnimating()) {
-            return;
-        }
-
-        BookState.setAnimating(true);
-        BookState.prevPage();
-
-        const currentPage = BookState.getCurrentPage();
-        const pageToFlip = this.elements.flipPages[CONFIG.TOTAL_FLIP_PAGES - 1 - currentPage];
-
-        // Add flipping animation class
-        pageToFlip.classList.add(CONFIG.CLASSES.FLIPPING);
-        pageToFlip.classList.remove(CONFIG.CLASSES.FLIPPED);
-
-        // Reset z-index to original stacking order
-        pageToFlip.style.zIndex = CONFIG.TOTAL_FLIP_PAGES - currentPage;
-
-        // Remove animation class and update display after animation completes
-        setTimeout(() => {
-            pageToFlip.classList.remove(CONFIG.CLASSES.FLIPPING);
-            this.updateDisplay();
-            BookState.setAnimating(false);
-        }, CONFIG.ANIMATION_DURATION);
-    },
-
-    /**
-     * Set zoom level with visual update
-     * @param {number} newZoom - Desired zoom level
-     */
-    setZoom(newZoom) {
-        const actualZoom = BookState.setZoom(newZoom);
-        this.elements.bookContainer.style.transform = `scale(${actualZoom})`;
-        this.elements.zoomLevelEl.textContent = `${Math.round(actualZoom * 100)}%`;
-    },
-
-    /**
-     * Increase zoom level
-     */
-    zoomIn() {
-        const newZoom = BookState.zoomIn();
-        this.setZoom(newZoom);
-    },
-
-    /**
-     * Decrease zoom level
-     */
-    zoomOut() {
-        const newZoom = BookState.zoomOut();
-        this.setZoom(newZoom);
-    },
-
-    /**
-     * Reset zoom to default (100%)
-     */
-    resetZoom() {
-        const defaultZoom = BookState.resetZoom();
-        this.setZoom(defaultZoom);
-    },
-
-    /**
-     * Zoom using mouse wheel
-     * @param {number} delta - Wheel delta value
-     */
-    zoomWheel(delta) {
-        const currentZoom = BookState.getZoom();
-        const newZoom = delta > 0
-            ? BookState.zoomOut(CONFIG.ZOOM_WHEEL_STEP)
-            : BookState.zoomIn(CONFIG.ZOOM_WHEEL_STEP);
-        this.setZoom(newZoom);
+            if (correspondingLink) {
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    correspondingLink.classList.add('active');
+                }
+            }
+        });
     }
-};
 
-// Export for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Book;
-}
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            // You can add more theme switching logic here
+        });
+    }
+
+    // Smooth reveal animations on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe sections for animation
+    const animatedElements = document.querySelectorAll('.section, .artwork');
+    animatedElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // Initialize first section as visible
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        heroSection.style.opacity = '1';
+        heroSection.style.transform = 'translateY(0)';
+    }
+});

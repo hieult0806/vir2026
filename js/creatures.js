@@ -501,6 +501,12 @@ class CreatureCanvas {
 
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+        // Update and draw fireworks
+        if (this.fireworkSystem) {
+            this.fireworkSystem.update();
+            this.fireworkSystem.draw();
+        }
+
         // Update and draw all creatures
         for (let creature of this.creatures) {
             // Each creature follows a wandering path
@@ -525,6 +531,226 @@ class CreatureCanvas {
     }
 }
 
+// Firework Particle System
+class Particle {
+    constructor(x, y, vx, vy, color, type = 'normal') {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.color = color;
+        this.type = type;
+        this.life = 1.0;
+        this.decay = 0.01 + Math.random() * 0.01;
+        this.gravity = 0.05;
+        this.size = type === 'rocket' ? 3 : 2;
+        this.trail = [];
+        this.maxTrailLength = 10;
+    }
+
+    update() {
+        this.trail.push({ x: this.x, y: this.y, life: this.life });
+        if (this.trail.length > this.maxTrailLength) {
+            this.trail.shift();
+        }
+
+        this.vy += this.gravity;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life -= this.decay;
+
+        // Air resistance
+        this.vx *= 0.99;
+        this.vy *= 0.99;
+    }
+
+    draw(ctx) {
+        // Draw trail
+        for (let i = 0; i < this.trail.length; i++) {
+            const t = this.trail[i];
+            const alpha = (i / this.trail.length) * t.life * 0.5;
+            ctx.fillStyle = this.color.replace(/[\d.]+\)$/g, alpha + ')');
+            ctx.beginPath();
+            ctx.arc(t.x, t.y, this.size * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        // Draw particle with glow
+        ctx.save();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
+        ctx.fillStyle = this.color.replace(/[\d.]+\)$/g, this.life + ')');
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+
+    isAlive() {
+        return this.life > 0;
+    }
+}
+
+class Firework {
+    constructor(x, y, targetY, color) {
+        this.x = x;
+        this.y = y;
+        this.targetY = targetY;
+        this.color = color;
+        this.exploded = false;
+        this.particles = [];
+
+        // Launch rocket
+        const vy = -8 - Math.random() * 4;
+        this.rocket = new Particle(x, y, 0, vy, color, 'rocket');
+    }
+
+    update() {
+        if (!this.exploded) {
+            this.rocket.update();
+
+            // Explode when rocket reaches target or slows down
+            if (this.rocket.y <= this.targetY || this.rocket.vy >= 0) {
+                this.explode();
+            }
+        } else {
+            // Update explosion particles
+            for (let i = this.particles.length - 1; i >= 0; i--) {
+                this.particles[i].update();
+                if (!this.particles[i].isAlive()) {
+                    this.particles.splice(i, 1);
+                }
+            }
+        }
+    }
+
+    explode() {
+        this.exploded = true;
+        const particleCount = 50 + Math.random() * 50;
+        const patterns = ['burst', 'ring', 'star', 'heart'];
+        const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+
+        for (let i = 0; i < particleCount; i++) {
+            let vx, vy;
+
+            switch (pattern) {
+                case 'burst':
+                    const angle = (Math.PI * 2 * i) / particleCount;
+                    const speed = 2 + Math.random() * 4;
+                    vx = Math.cos(angle) * speed;
+                    vy = Math.sin(angle) * speed;
+                    break;
+
+                case 'ring':
+                    const ringAngle = (Math.PI * 2 * i) / particleCount;
+                    const ringSpeed = 3 + Math.random() * 2;
+                    vx = Math.cos(ringAngle) * ringSpeed;
+                    vy = Math.sin(ringAngle) * ringSpeed;
+                    break;
+
+                case 'star':
+                    const points = 5;
+                    const starAngle = ((Math.PI * 2) / particleCount) * i;
+                    const radius = (i % (particleCount / points) < particleCount / points / 2) ? 4 : 2;
+                    vx = Math.cos(starAngle) * radius;
+                    vy = Math.sin(starAngle) * radius;
+                    break;
+
+                case 'heart':
+                    const t = (i / particleCount) * Math.PI * 2;
+                    const hx = 16 * Math.pow(Math.sin(t), 3);
+                    const hy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+                    vx = hx * 0.3;
+                    vy = hy * 0.3;
+                    break;
+            }
+
+            // Add color variation
+            const colors = [
+                this.color,
+                this.color.replace('0.9', '0.7'),
+                'rgba(255, 255, 255, 0.9)'
+            ];
+            const particleColor = colors[Math.floor(Math.random() * colors.length)];
+
+            this.particles.push(new Particle(
+                this.rocket.x,
+                this.rocket.y,
+                vx,
+                vy,
+                particleColor
+            ));
+        }
+    }
+
+    draw(ctx) {
+        if (!this.exploded) {
+            this.rocket.draw(ctx);
+        } else {
+            for (let particle of this.particles) {
+                particle.draw(ctx);
+            }
+        }
+    }
+
+    isFinished() {
+        return this.exploded && this.particles.length === 0;
+    }
+}
+
+class FireworkSystem {
+    constructor(canvas, ctx) {
+        this.canvas = canvas;
+        this.ctx = ctx;
+        this.fireworks = [];
+        this.lastLaunch = 0;
+        this.launchInterval = 1000 + Math.random() * 2000; // Random interval
+    }
+
+    update() {
+        const now = Date.now();
+
+        // Launch new firework
+        if (now - this.lastLaunch > this.launchInterval) {
+            this.launch();
+            this.lastLaunch = now;
+            this.launchInterval = 1000 + Math.random() * 2000;
+        }
+
+        // Update existing fireworks
+        for (let i = this.fireworks.length - 1; i >= 0; i--) {
+            this.fireworks[i].update();
+            if (this.fireworks[i].isFinished()) {
+                this.fireworks.splice(i, 1);
+            }
+        }
+    }
+
+    launch() {
+        const x = Math.random() * this.canvas.width;
+        const y = this.canvas.height;
+        const targetY = 100 + Math.random() * 200;
+
+        const colors = [
+            'rgba(0, 229, 255, 0.9)',
+            'rgba(255, 0, 110, 0.9)',
+            'rgba(123, 44, 191, 0.9)',
+            'rgba(255, 200, 0, 0.9)',
+            'rgba(100, 255, 100, 0.9)',
+            'rgba(255, 100, 50, 0.9)'
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        this.fireworks.push(new Firework(x, y, targetY, color));
+    }
+
+    draw() {
+        for (let firework of this.fireworks) {
+            firework.draw(this.ctx);
+        }
+    }
+}
+
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const heroCanvas = new CreatureCanvas('heroCreatures');
@@ -536,6 +762,9 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < 2; i++) {
         heroCanvas.addCreature('jellyfish');
     }
+
+    // Add firework system
+    heroCanvas.fireworkSystem = new FireworkSystem(heroCanvas.canvas, heroCanvas.ctx);
 
     heroCanvas.start();
 });

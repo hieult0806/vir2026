@@ -59,6 +59,80 @@
             <span>Scroll</span>
             <div class="scroll-line"></div>
         </div>
+
+        <!-- Animated Creatures -->
+        <div class="creatures-container">
+            <svg class="creature creature-1" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="glow1">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Body -->
+                <ellipse cx="50" cy="40" rx="25" ry="30" class="creature-body" filter="url(#glow1)"/>
+                <circle cx="50" cy="35" r="20" class="creature-head" filter="url(#glow1)"/>
+                <!-- Eyes -->
+                <circle cx="42" cy="32" r="4" class="creature-eye"/>
+                <circle cx="58" cy="32" r="4" class="creature-eye"/>
+                <!-- Tentacles -->
+                <path d="M 35 60 Q 20 80, 15 110" class="tentacle tentacle-1" filter="url(#glow1)"/>
+                <path d="M 45 65 Q 35 90, 30 120" class="tentacle tentacle-2" filter="url(#glow1)"/>
+                <path d="M 50 68 Q 50 95, 50 125" class="tentacle tentacle-3" filter="url(#glow1)"/>
+                <path d="M 55 65 Q 65 90, 70 120" class="tentacle tentacle-4" filter="url(#glow1)"/>
+                <path d="M 65 60 Q 80 80, 85 110" class="tentacle tentacle-5" filter="url(#glow1)"/>
+            </svg>
+
+            <svg class="creature creature-2" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="glow2">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Body -->
+                <ellipse cx="50" cy="45" rx="20" ry="35" class="creature-body" filter="url(#glow2)"/>
+                <circle cx="50" cy="30" r="18" class="creature-head" filter="url(#glow2)"/>
+                <!-- Eyes -->
+                <circle cx="43" cy="28" r="3" class="creature-eye"/>
+                <circle cx="57" cy="28" r="3" class="creature-eye"/>
+                <!-- Tentacles -->
+                <path d="M 40 70 Q 30 90, 25 115" class="tentacle tentacle-1" filter="url(#glow2)"/>
+                <path d="M 48 72 Q 42 95, 40 125" class="tentacle tentacle-2" filter="url(#glow2)"/>
+                <path d="M 52 72 Q 58 95, 60 125" class="tentacle tentacle-3" filter="url(#glow2)"/>
+                <path d="M 60 70 Q 70 90, 75 115" class="tentacle tentacle-4" filter="url(#glow2)"/>
+            </svg>
+
+            <svg class="creature creature-3" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="glow3">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Body -->
+                <circle cx="50" cy="40" r="22" class="creature-body" filter="url(#glow3)"/>
+                <circle cx="50" cy="33" r="15" class="creature-head" filter="url(#glow3)"/>
+                <!-- Eyes -->
+                <circle cx="44" cy="30" r="3" class="creature-eye"/>
+                <circle cx="56" cy="30" r="3" class="creature-eye"/>
+                <!-- Tentacles -->
+                <path d="M 32 55 Q 18 75, 12 105" class="tentacle tentacle-1" filter="url(#glow3)"/>
+                <path d="M 42 58 Q 32 85, 28 118" class="tentacle tentacle-2" filter="url(#glow3)"/>
+                <path d="M 50 60 Q 48 90, 45 125" class="tentacle tentacle-3" filter="url(#glow3)"/>
+                <path d="M 58 58 Q 68 85, 72 118" class="tentacle tentacle-4" filter="url(#glow3)"/>
+                <path d="M 68 55 Q 82 75, 88 105" class="tentacle tentacle-5" filter="url(#glow3)"/>
+            </svg>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -183,6 +257,30 @@
                     </div>
                 </article>
             </div>
+        </div>
+
+        <!-- Animated Creatures for Services Section -->
+        <div class="creatures-container creatures-services">
+            <svg class="creature creature-4" viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="glow4">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <ellipse cx="50" cy="42" rx="23" ry="32" class="creature-body" filter="url(#glow4)"/>
+                <circle cx="50" cy="32" r="17" class="creature-head" filter="url(#glow4)"/>
+                <circle cx="43" cy="30" r="3.5" class="creature-eye"/>
+                <circle cx="57" cy="30" r="3.5" class="creature-eye"/>
+                <path d="M 38 65 Q 28 85, 23 115" class="tentacle tentacle-1" filter="url(#glow4)"/>
+                <path d="M 46 68 Q 40 92, 37 122" class="tentacle tentacle-2" filter="url(#glow4)"/>
+                <path d="M 50 70 Q 50 96, 50 126" class="tentacle tentacle-3" filter="url(#glow4)"/>
+                <path d="M 54 68 Q 60 92, 63 122" class="tentacle tentacle-4" filter="url(#glow4)"/>
+                <path d="M 62 65 Q 72 85, 77 115" class="tentacle tentacle-5" filter="url(#glow4)"/>
+            </svg>
         </div>
     </section>
 

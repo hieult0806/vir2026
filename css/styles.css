@@ -784,6 +784,146 @@ body {
     font-size: 0.85rem;
 }
 
+/* Portfolio Section */
+.section-portfolio {
+    background: var(--color-bg-dark);
+}
+
+.portfolio-category {
+    margin-bottom: 6rem;
+}
+
+.portfolio-category:last-child {
+    margin-bottom: 0;
+}
+
+.portfolio-category-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.portfolio-category-description {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.portfolio-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 40px rgba(0, 229, 255, 0.2);
+}
+
+.portfolio-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.portfolio-image .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.portfolio-image .image-placeholder.artist-placeholder {
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.1) 0%, rgba(123, 44, 191, 0.1) 100%);
+}
+
+.portfolio-icon {
+    width: 80px;
+    height: 80px;
+    stroke: var(--color-primary);
+    fill: none;
+    stroke-width: 2;
+    opacity: 0.6;
+}
+
+.artist-placeholder .portfolio-icon {
+    stroke: var(--color-secondary);
+}
+
+.portfolio-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    background: rgba(0, 229, 255, 0.2);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.artist-placeholder .portfolio-status {
+    background: rgba(255, 0, 110, 0.2);
+    color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+}
+
+.portfolio-content {
+    padding: 2rem;
+}
+
+.portfolio-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-role {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.portfolio-description {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .hero-title {
@@ -844,6 +984,14 @@ body {
 
     .games-grid {
         grid-template-columns: 1fr;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-category-title {
+        font-size: 2rem;
     }
 
     .footer-content {

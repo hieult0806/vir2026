@@ -935,10 +935,10 @@ body {
 
 .creature {
     position: absolute;
-    width: 80px;
-    height: 120px;
-    opacity: 0.4;
-    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.5));
+    width: 120px;
+    height: 180px;
+    opacity: 0.7;
+    filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.8));
 }
 
 .creature-1 {
@@ -969,40 +969,40 @@ body {
 }
 
 .creature-body {
-    fill: rgba(0, 229, 255, 0.3);
-    stroke: rgba(0, 229, 255, 0.6);
-    stroke-width: 1.5;
+    fill: rgba(0, 229, 255, 0.5);
+    stroke: rgba(0, 229, 255, 0.9);
+    stroke-width: 2;
     animation: pulse 4s ease-in-out infinite;
 }
 
 .creature-2 .creature-body {
-    fill: rgba(255, 0, 110, 0.3);
-    stroke: rgba(255, 0, 110, 0.6);
+    fill: rgba(255, 0, 110, 0.5);
+    stroke: rgba(255, 0, 110, 0.9);
     animation-delay: -1.5s;
 }
 
 .creature-3 .creature-body {
-    fill: rgba(123, 44, 191, 0.3);
-    stroke: rgba(123, 44, 191, 0.6);
+    fill: rgba(123, 44, 191, 0.5);
+    stroke: rgba(123, 44, 191, 0.9);
     animation-delay: -3s;
 }
 
 .creature-head {
-    fill: rgba(0, 229, 255, 0.4);
-    stroke: rgba(0, 229, 255, 0.7);
-    stroke-width: 1.5;
+    fill: rgba(0, 229, 255, 0.6);
+    stroke: rgba(0, 229, 255, 1);
+    stroke-width: 2;
     animation: pulse 4s ease-in-out infinite;
 }
 
 .creature-2 .creature-head {
-    fill: rgba(255, 0, 110, 0.4);
-    stroke: rgba(255, 0, 110, 0.7);
+    fill: rgba(255, 0, 110, 0.6);
+    stroke: rgba(255, 0, 110, 1);
     animation-delay: -1.5s;
 }
 
 .creature-3 .creature-head {
-    fill: rgba(123, 44, 191, 0.4);
-    stroke: rgba(123, 44, 191, 0.7);
+    fill: rgba(123, 44, 191, 0.6);
+    stroke: rgba(123, 44, 191, 1);
     animation-delay: -3s;
 }
 
@@ -1013,17 +1013,17 @@ body {
 
 .tentacle {
     fill: none;
-    stroke: rgba(0, 229, 255, 0.5);
-    stroke-width: 2;
+    stroke: rgba(0, 229, 255, 0.8);
+    stroke-width: 3;
     stroke-linecap: round;
 }
 
 .creature-2 .tentacle {
-    stroke: rgba(255, 0, 110, 0.5);
+    stroke: rgba(255, 0, 110, 0.8);
 }
 
 .creature-3 .tentacle {
-    stroke: rgba(123, 44, 191, 0.5);
+    stroke: rgba(123, 44, 191, 0.8);
 }
 
 .tentacle-1 {

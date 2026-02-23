@@ -541,11 +541,11 @@ class Particle {
         this.color = color;
         this.type = type;
         this.life = 1.0;
-        this.decay = 0.01 + Math.random() * 0.01;
-        this.gravity = 0.05;
-        this.size = type === 'rocket' ? 3 : 2;
+        this.decay = 0.008 + Math.random() * 0.008; // Slower decay = longer visibility
+        this.gravity = 0.08;
+        this.size = type === 'rocket' ? 5 : 3; // Bigger particles
         this.trail = [];
-        this.maxTrailLength = 10;
+        this.maxTrailLength = 15; // Longer trails
     }
 
     update() {
@@ -577,11 +577,18 @@ class Particle {
 
         // Draw particle with glow
         ctx.save();
-        ctx.shadowBlur = 10;
+        ctx.shadowBlur = 20;
         ctx.shadowColor = this.color;
         ctx.fillStyle = this.color.replace(/[\d.]+\)$/g, this.life + ')');
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Extra bright center
+        ctx.shadowBlur = 5;
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + (this.life * 0.8) + ')';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size * 0.5, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
     }
@@ -703,8 +710,11 @@ class FireworkSystem {
         this.canvas = canvas;
         this.ctx = ctx;
         this.fireworks = [];
-        this.lastLaunch = 0;
-        this.launchInterval = 1000 + Math.random() * 2000; // Random interval
+        this.lastLaunch = Date.now();
+        this.launchInterval = 800 + Math.random() * 1200; // Shorter interval (0.8-2s)
+
+        // Launch immediately on creation
+        setTimeout(() => this.launch(), 500);
     }
 
     update() {
@@ -714,7 +724,7 @@ class FireworkSystem {
         if (now - this.lastLaunch > this.launchInterval) {
             this.launch();
             this.lastLaunch = now;
-            this.launchInterval = 1000 + Math.random() * 2000;
+            this.launchInterval = 800 + Math.random() * 1200; // 0.8-2 seconds
         }
 
         // Update existing fireworks
@@ -741,7 +751,9 @@ class FireworkSystem {
         ];
         const color = colors[Math.floor(Math.random() * colors.length)];
 
-        this.fireworks.push(new Firework(x, y, targetY, color));
+        const firework = new Firework(x, y, targetY, color);
+        this.fireworks.push(firework);
+        console.log('Firework launched at', x, y, 'target:', targetY, 'color:', color);
     }
 
     draw() {

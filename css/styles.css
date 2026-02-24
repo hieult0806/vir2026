@@ -1,15 +1,21 @@
 :root {
-    /* Colors */
-    --color-bg-dark: #0a0a0f;
-    --color-bg-darker: #050508;
-    --color-bg-light: #12121a;
-    --color-primary: #00e5ff;
-    --color-primary-dark: #00b8d4;
-    --color-secondary: #ff006e;
-    --color-accent: #7b2cbf;
+    /* Colors - Updated to match reference */
+    --color-bg-dark: #1a1f2e;
+    --color-bg-darker: #0f1419;
+    --color-bg-light: #252b3a;
+    --color-primary: #ff4757;
+    --color-primary-dark: #ee3344;
+    --color-primary-glow: rgba(255, 71, 87, 0.6);
+    --color-secondary: #ffa502;
+    --color-accent: #5352ed;
     --color-text: #ffffff;
-    --color-text-muted: #a0a0b0;
-    --color-text-dark: #606070;
+    --color-text-muted: #a4b0be;
+    --color-text-dark: #747d8c;
+
+    /* Glass morphism */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: 20px;
 
     /* Fonts */
     --font-heading: 'Orbitron', sans-serif;
@@ -45,6 +51,25 @@ body {
     color: var(--color-bg-dark);
 }
 
+/* Glass Morphism Effects */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+}
+
+.glow {
+    box-shadow: 0 0 20px var(--color-primary-glow),
+                0 0 40px var(--color-primary-glow),
+                0 0 60px var(--color-primary-glow);
+}
+
+.glow-text {
+    text-shadow: 0 0 10px var(--color-primary-glow),
+                 0 0 20px var(--color-primary-glow);
+}
+
 /* Container */
 .container {
     max-width: var(--container-width);
@@ -58,16 +83,17 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(10, 10, 15, 0.9);
+    background: rgba(15, 20, 25, 0.8);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 1000;
     transition: all 0.3s ease;
 }
 
 .navbar.scrolled {
-    background: rgba(10, 10, 15, 0.95);
-    box-shadow: 0 4px 30px rgba(0, 229, 255, 0.1);
+    background: rgba(15, 20, 25, 0.95);
+    box-shadow: 0 4px 30px rgba(255, 71, 87, 0.1);
 }
 
 .nav-container {

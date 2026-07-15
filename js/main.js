@@ -121,6 +121,30 @@ document.addEventListener('DOMContentLoaded', () => {
         fadeInObserver.observe(section);
     });
 
+    // Staggered animation for cards within sections
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const cards = entry.target.querySelectorAll('.game-card, .portfolio-card, .stat-item, .value-item, .tool-card, .contact-item');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100); // Stagger by 100ms
+                });
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        cardObserver.observe(section);
+    });
+
     // Add fade-in class styles dynamically
     const style = document.createElement('style');
     style.textContent = `

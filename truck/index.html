@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>PackTheTruck</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container">
+      <canvas id="unity-canvas" width=720 height=1280 tabindex="-1"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-loading-title">PackTheTruck</div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-warning"> </div>
+      <div id="unity-rotate-overlay"><div>Please rotate your device back to portrait</div></div>
+    </div>
+    <script>
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      function unityShowBanner(msg, type) {
+        var warningBanner = document.querySelector("#unity-warning");
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
+
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/web.loader.js";
+      var config = {
+        arguments: [],
+        dataUrl: buildUrl + "/web.data.br",
+        frameworkUrl: buildUrl + "/web.framework.js.br",
+        codeUrl: buildUrl + "/web.wasm.br",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "VN XDEV",
+        productName: "PackTheTruck",
+        productVersion: "0.1.0",
+        showBanner: unityShowBanner,
+      };
+
+      // Unity keeps the WebGL render target matched to the canvas DOM size
+      // (scaled by window.devicePixelRatio), so scaling the canvas via CSS
+      // below stays sharp at any window size.
+
+      // Design aspect ratio comes from Player Settings > Resolution and
+      // Presentation > Default Canvas Width / Height (720x1280).
+      var designAspect = 720 / 1280;
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      // Desktop: letterbox the canvas to the design aspect ratio, centered,
+      // rescaling whenever the window (or embedding iframe) resizes.
+      function fitCanvas() {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        var cw, ch;
+        if (w / h > designAspect) {
+          ch = h;
+          cw = Math.round(h * designAspect);
+        } else {
+          cw = w;
+          ch = Math.round(w / designAspect);
+        }
+        canvas.style.width = cw + "px";
+        canvas.style.height = ch + "px";
+      }
+
+      if (isMobile) {
+        // Mobile: fill the whole browser client area, exactly like the
+        // native Android build; the game's SafeAreaFitter/PortraitCameraFitter
+        // handle whatever portrait aspect the device has.
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes, viewport-fit=cover';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "unity-mobile";
+        canvas.className = "unity-mobile";
+
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+      } else {
+        window.addEventListener("resize", fitCanvas);
+        fitCanvas();
+      }
+
+      document.querySelector("#unity-loading-bar").style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          document.querySelector("#unity-loading-bar").style.display = "none";
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      script.onerror = () => {
+        unityShowBanner('Failed to load the Unity loader script. If viewing this page via file://, host it with a web server instead.', 'error');
+      };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
+</html>
